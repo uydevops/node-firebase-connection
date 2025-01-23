@@ -1,4 +1,5 @@
-const firebase = require('firebase');
+const firebase = require('firebase/app');
+require('firebase/firestore');
 
 const firebaseConfig = {
     apiKey: "AIzaSyCDfzhl2SHW7624v9OdGrDD08bBLwlB_hc",
@@ -13,7 +14,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
-
 const Users = db.collection('User');
 
 module.exports = Users;

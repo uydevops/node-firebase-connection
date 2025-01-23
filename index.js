@@ -7,11 +7,16 @@ app.use(express.json());
 app.use(cors());
 
 app.post("/create", async (req, res) => {
-  const { name, email, password } = req.body;
-  const newUser = await Users.add({ name, email, password });
-  res.json(newUser);
+  try {
+    const { name, email, password } = req.body;
+    const newUser = await Users.add({ name, email, password });
+    res.json(newUser);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-app.listen(4000, () => {
-  console.log("Server is running on port 3000");
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
